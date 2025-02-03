@@ -1,4 +1,5 @@
 import request from 'supertest';
+import app from '../src/app'; // Adjust the path as necessary
 
 // ...existing code...
 
