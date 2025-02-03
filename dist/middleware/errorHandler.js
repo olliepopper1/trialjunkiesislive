@@ -1,12 +1,25 @@
 "use strict";
-
-var errorHandler = function errorHandler(err, req, res, next) {
-  // Log the error stack trace
-  console.error('Error:', err.stack);
-
-  // Send error response
-  res.status(500).json({
-    message: 'Something went wrong!'
-  });
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.notFoundHandler = exports.errorHandler = void 0;
+const errorHandler = (err, req, res, next) => {
+    console.error(err.stack);
+    const status = err.status || 500;
+    const message = err.message || 'Something went wrong';
+    res.status(status).json({
+        error: {
+            message,
+            status
+        }
+    });
 };
-module.exports = errorHandler;
+exports.errorHandler = errorHandler;
+const notFoundHandler = (req, res, next) => {
+    res.status(404).json({
+        error: {
+            message: 'Route not found',
+            status: 404
+        }
+    });
+};
+exports.notFoundHandler = notFoundHandler;
+//# sourceMappingURL=errorHandler.js.map

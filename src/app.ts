@@ -1,48 +1,74 @@
-import express from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
+import { errorHandler, notFoundHandler } from './middleware/errorHandler';
+import logger from './utils/logger';
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-// Auth middleware
-const authMiddleware = (req: any, res: any, next: any) => {
-  const token = req.headers.authorization?.split(' ')[1];
-  if (!token) return res.status(401).json({ message: 'No token provided' });
-  
+// Initialize routes
+const router = express.Router();
+
+interface AuthRequest extends Request {
+  user?: { id: number };
+}
+
+const authMiddleware = (
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction
+) => {
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'secret');
+    const token = req.headers.authorization?.split(' ')[1];
+    if (!token) {
+      return res.status(401).json({ message: 'No token provided' });
+    }
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'secret') as { id: number };
     req.user = decoded;
     next();
   } catch (err) {
+    logger.error('Auth error:', err);
     res.status(401).json({ message: 'Invalid token' });
   }
 };
 
-// Test route
-app.get('/api/test', (req, res) => {
+// Routes
+router.get('/test', (_req: Request, res: Response) => {
   res.json({ message: 'success' });
 });
 
-// Auth routes
-app.post('/api/auth/login', async (req, res) => {
-  const { email, password } = req.body;
-  // Mock user for testing
-  const user = { id: 1, email: 'test@test.com', password: await bcrypt.hash('password123', 10) };
-  
-  const isValid = await bcrypt.compare(password, user.password);
-  if (!isValid) return res.status(401).json({ message: 'Invalid credentials' });
+router.post('/auth/login', async (req: Request, res: Response) => {
+  try {
+    const { password } = req.body;
+    const user = { id: 1, email: 'test@test.com', password: await bcrypt.hash('password123', 10) };
+    
+    const isValid = await bcrypt.compare(password, user.password);
+    if (!isValid) {
+      return res.status(401).json({ message: 'Invalid credentials' });
+    }
 
-  const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET || 'secret');
-  res.json({ token });
+    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET || 'secret');
+    res.json({ token });
+  } catch (err) {
+    logger.error('Login error:', err);
+    res.status(500).json({ message: 'Internal server error' });
+  }
 });
 
-// Protected routes
-app.get('/api/protected', authMiddleware, (req, res) => {
-  res.json({ message: 'Protected data' });
+router.get('/protected', authMiddleware, (req: AuthRequest, res: Response) => {
+  res.json({ message: 'Protected data', userId: req.user?.id });
 });
+
+// Apply routes
+app.use('/api', router);
+
+// Error handling - fix middleware functions
+app.use((req: Request, res: Response, next: NextFunction) => notFoundHandler(req, res, next));
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => errorHandler(err, req, res, next));
 
 export default app;
