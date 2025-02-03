@@ -172,3 +172,21 @@ TEXTA_API_KEY=your_texta_api_key
       "mailbox_id": "mailbox123"
     }
     ```
+
+const savedTheme = localStorage.getItem('theme') || 'dark';
+localStorage.setItem('theme', newTheme);
+document.documentElement.setAttribute('data-theme', newTheme);# Remove old dependencies
+rm -rf node_modules package-lock.json
+
+# Install dependencies
+npm install
+
+# Start the development server
+npm run dev# Remove old dependencies
+rm -rf node_modules package-lock.json
+
+# Install dependencies
+npm install
+
+# Start the development server
+npm run dev

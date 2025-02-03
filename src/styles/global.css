@@ -1,0 +1,20 @@
+:root {
+  --primary-color: #2563eb;
+  --secondary-color: #4f46e5;
+  --background-light: #ffffff;
+  --background-dark: #1a1a1a;
+  --text-light: #333333;
+  --text-dark: #ffffff;
+}
+
+[data-theme='dark'] {
+  --background: var(--background-dark);
+  --text: var(--text-dark);
+}
+
+[data-theme='light'] {
+  --background: var(--background-light);
+  --text: var(--text-light);
+}
+
+/* Add more global styles as needed */
