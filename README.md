@@ -20,7 +20,7 @@ This is a Node.js API project using Express, Mongoose, and TypeScript.
 ## Environment Variables
 
 - `DATABASE_URL`: Your MongoDB connection string
-- `MONTERO_API_KEY`: Your Montero Payments API key
+- `MONERO_PAYMENTS_API_KEY`: Your Monero Payments API key
 - `JWT_SECRET`: Your JWT secret for authentication
 
 ## Project Setup
@@ -56,7 +56,7 @@ cd client && npm start
 Ensure you set up the following environment variables in your production environment:
 
 - `DATABASE_URL`: Your MongoDB connection string
-- `MONTERO_API_KEY`: Your Montero Payments API key
+- `MONERO_PAYMENTS_API_KEY`: Your Monero Payments API key
 - `STRIGA_API_KEY`: Your Striga API key
 - `TWILIO_ACCOUNT_SID`: Your Twilio Account SID
 - `TWILIO_AUTH_TOKEN`: Your Twilio Auth Token
@@ -121,9 +121,9 @@ For more information on creating a VSCode Notebook Renderer with React, you can 
 
 ## External API Integrations
 
-### Montero Payments API
+### Monero Payments API
 
-- **Endpoint**: `https://api.montero.com/v1/payments`
+- **Endpoint**: `https://api.moneropayments.com/v1/payments`
 - **Required headers**:
   - `Authorization`: Bearer token
   - `Content-Type`: application/json
@@ -138,7 +138,7 @@ For more information on creating a VSCode Notebook Renderer with React, you can 
   }
   ```
 
-- **Documentation**: [Montero Payments API](https://montero.com/docs)
+- **Documentation**: [Monero Payments API](https://moneropayments.com/docs)
 
 ### Striga API for Virtual Card Creation
 
@@ -160,7 +160,7 @@ For more information on creating a VSCode Notebook Renderer with React, you can 
 
 Ensure you set up the following environment variables in your `.env` file:
 
-- `MONTERO_API_KEY`: Your Montero Payments API key
+- `MONERO_PAYMENTS_API_KEY`: Your Monero Payments API key
 - `STRIGA_API_KEY`: Your Striga API key
 - `TWILIO_ACCOUNT_SID`: Your Twilio Account SID
 - `TWILIO_AUTH_TOKEN`: Your Twilio Auth Token

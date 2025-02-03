@@ -1,0 +1,9 @@
+{
+  "extension": ["cjs"],
+  "spec": "tests/**/*.test.cjs",
+  "require": ["ts-node/register"],
+  "recursive": true,
+  "exit": true,
+  "timeout": 5000,
+  "experimental-specifier-resolution": "node"
+}

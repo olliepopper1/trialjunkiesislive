@@ -29,6 +29,12 @@
   ```
 - **Reference**: [Montero API Documentation](https://montero.com/docs) (if available)
 
+### Monero Payments API
+- **Endpoint**: `https://api.moneropayments.com/v1/payments`
+- **Required Headers**:
+  - `Authorization`: `Bearer <MONERO_PAYMENTS_API_KEY>`
+  - `Content-Type`: `application/json`
+
 ### Striga API for Virtual Card Creation
 - **Endpoint**: `https://api.striga.com/v1/cards`
 - **Required Headers**:
@@ -72,6 +78,7 @@
 Ensure the following environment variables are set in your `.env` file:
 ```
 MONTERO_API_KEY=your_montero_api_key
+MONERO_PAYMENTS_API_KEY=your_monero_payments_api_key
 STRIGA_API_KEY=your_striga_api_key
 TWILIO_ACCOUNT_SID=your_twilio_account_sid
 TWILIO_AUTH_TOKEN=your_twilio_auth_token
@@ -102,6 +109,17 @@ TEXTA_API_KEY=your_texta_api_key
       "status": "success",
       "amount": 100,
       "currency": "USD"
+    }
+    ```
+
+- **Monero Payments API**:
+  - **Request**:
+    ```json
+    {
+      "amount": 100,
+      "currency": "USD",
+      "subscription_type": "monthly",
+      "user_id": "user123"
     }
     ```
 

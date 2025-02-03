@@ -11,8 +11,8 @@ const logger = winston.createLogger({
   ]
 });
 
-const MONTERO_API_KEY = process.env.MONTERO_API_KEY;
-const MONTERO_API_URL = 'https://api.montero.com/v1/payments';
+const MONERO_PAYMENTS_API_KEY = process.env.MONERO_PAYMENTS_API_KEY;
+const MONERO_PAYMENTS_API_URL = 'https://api.moneropayments.com/v1/payments';
 
 async function createPayment({ amount, currency, subscriptionType, userId }) {
   try {
@@ -23,7 +23,7 @@ async function createPayment({ amount, currency, subscriptionType, userId }) {
 
     // Make API request
     const response = await axios.post(
-      MONTERO_API_URL,
+      MONERO_PAYMENTS_API_URL,
       {
         amount,
         currency,
@@ -32,7 +32,7 @@ async function createPayment({ amount, currency, subscriptionType, userId }) {
       },
       {
         headers: {
-          'Authorization': `Bearer ${MONTERO_API_KEY}`,
+          'Authorization': `Bearer ${MONERO_PAYMENTS_API_KEY}`,
           'Content-Type': 'application/json'
         }
       }
@@ -66,13 +66,13 @@ async function refundPayment({ paymentId, amount, userId }) {
 
     // Make API request
     const response = await axios.post(
-      `${MONTERO_API_URL}/${paymentId}/refund`,
+      `${MONERO_PAYMENTS_API_URL}/${paymentId}/refund`,
       {
         amount
       },
       {
         headers: {
-          'Authorization': `Bearer ${MONTERO_API_KEY}`,
+          'Authorization': `Bearer ${MONERO_PAYMENTS_API_KEY}`,
           'Content-Type': 'application/json'
         }
       }

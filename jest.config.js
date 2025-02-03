@@ -25,5 +25,13 @@ module.exports = {
       statements: 20
     }
   },
-  moduleFileExtensions: ['ts', 'js']
+  moduleFileExtensions: ['ts', 'js'],
+  setupFilesAfterEnv: [
+    '<rootDir>/test/setup.js',
+    '<rootDir>/test/setup.production.js'
+  ],
+  testPathIgnorePatterns: [
+    '/node_modules/',
+    '/dist/'
+  ]
 };
