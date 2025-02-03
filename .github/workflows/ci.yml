@@ -17,6 +17,8 @@ jobs:
       with:
         node-version: '14'
     - name: Install dependencies
-      run: npm install ts-jest
+      run: npm install
+    - name: Print Node.js version
+      run: node -v
     - name: Run tests
       run: npm test
