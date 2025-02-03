@@ -1,10 +1,11 @@
 {
   "extension": ["cjs"],
   "spec": "tests/**/*.test.cjs",
-  "file": ["tests/config/setup.cjs"],
+  "file": ["./tests/config/setup.cjs"],
   "require": [
     "ts-node/register",
-    "dotenv/config"
+    "dotenv/config",
+    "./tests/config/register.cjs"
   ],
   "recursive": true,
   "exit": true,
