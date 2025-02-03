@@ -10,5 +10,6 @@
   "exit": true,
   "timeout": 10000,
   "reporter": "spec",
-  "ignore": ["node_modules"]
+  "ignore": ["node_modules"],
+  "watch-files": ["tests/**/*.test.cjs", "src/**/*.cjs"]
 }
