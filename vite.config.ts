@@ -5,15 +5,10 @@ import path from 'path';
 export default defineConfig({
   plugins: [
     react({
-      jsxRuntime: 'classic'
+      jsxRuntime: 'automatic',
+      jsxImportSource: 'react'
     })
   ],
-  esbuild: {
-    jsxInject: `import React from 'react'`,
-    jsxFactory: 'React.createElement',
-    jsxFragment: 'React.Fragment'
-  },
-  root: '.',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src')
