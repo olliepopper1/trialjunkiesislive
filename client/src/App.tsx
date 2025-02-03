@@ -1,12 +1,15 @@
-
 import React from 'react';
+import './App.css';
 
-const App: React.FC = () => {
+function App() {
   return (
-    <div>
-      <h1>Welcome to Trial Junkie</h1>
+    <div className="App">
+      <header className="App-header">
+        <h1>Trial Junkies</h1>
+        <p>Welcome to Trial Junkies - Your Legal Management Solution</p>
+      </header>
     </div>
   );
-};
+}
 
 export default App;
