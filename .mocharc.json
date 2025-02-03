@@ -1,9 +1,14 @@
 {
   "extension": ["cjs"],
   "spec": "tests/**/*.test.cjs",
-  "require": ["ts-node/register"],
+  "file": ["tests/config/setup.cjs"],
+  "require": [
+    "ts-node/register",
+    "dotenv/config"
+  ],
   "recursive": true,
   "exit": true,
-  "timeout": 5000,
-  "experimental-specifier-resolution": "node"
+  "timeout": 10000,
+  "reporter": "spec",
+  "ignore": ["node_modules"]
 }

@@ -1,5 +1,5 @@
-const { expect } = require('chai');
-const { authenticate, login, register } = require('../src/auth.cjs');
+import { expect } from 'chai';
+import { authenticate, login, register } from '../src/auth.cjs';
 
 describe('Authentication Tests', () => {
   it('should register a new user', async () => {

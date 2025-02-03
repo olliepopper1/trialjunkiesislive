@@ -1,5 +1,8 @@
-const { expect } = require('chai');
-const { searchFunction } = require('../src/search.cjs');
+'use strict';
+
+import chai from 'chai';
+const expect = chai.expect;
+import { searchFunction } from '../src/search.cjs';
 
 describe('Search Functionality Tests', () => {
   it('should return results for valid search terms', async () => {
