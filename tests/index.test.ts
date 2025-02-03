@@ -1,9 +1,9 @@
-import { app } from '../src/app';
-import { server } from '../src/index';
+import app from '../src/app';
+import server, { httpServer } from '../src/index';
 
 describe('Server', () => {
   afterEach(() => {
-    server.close();
+    httpServer.close();
   });
 
   test('should start the server', () => {
