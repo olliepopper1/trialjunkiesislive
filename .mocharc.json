@@ -1,16 +1,12 @@
 {
   "extension": ["cjs"],
   "spec": "tests/**/*.test.cjs",
-  "file": ["./tests/config/setup.cjs"],
   "require": [
     "ts-node/register",
-    "dotenv/config",
-    "./tests/config/register.cjs"
+    "./tests/config/setup.cjs"
   ],
-  "recursive": true,
-  "exit": true,
+  "ui": "bdd",
   "timeout": 10000,
-  "reporter": "spec",
-  "ignore": ["node_modules"],
+  "exit": true,
   "watch-files": ["tests/**/*.test.cjs", "src/**/*.cjs"]
 }
