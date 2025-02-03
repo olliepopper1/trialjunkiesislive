@@ -14,7 +14,25 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Model = void 0;
 __exportStar(require("./user"), exports);
 __exportStar(require("./post"), exports);
 __exportStar(require("./comment"), exports);
+class Model {
+    constructor(name) {
+        this.name = name;
+        this.id = Math.random().toString(36).substr(2, 9);
+        this.createdAt = new Date();
+        this.updatedAt = new Date();
+    }
+    getData() {
+        return {
+            id: this.id,
+            name: this.name,
+            createdAt: this.createdAt,
+            updatedAt: this.updatedAt
+        };
+    }
+}
+exports.Model = Model;
 //# sourceMappingURL=index.js.map

@@ -1,6 +1,3 @@
 import { Request, Response, NextFunction } from 'express';
-export interface CustomError extends Error {
-    status?: number;
-}
-export declare const errorHandler: (err: CustomError, req: Request, res: Response, next: NextFunction) => void;
-export declare const notFoundHandler: (req: Request, res: Response, next: NextFunction) => void;
+export declare const errorHandler: (err: Error, _req: Request, res: Response, _next: NextFunction) => void;
+export declare function notFoundHandler(_req: Request, res: Response, _next: NextFunction): Response<any, Record<string, any>>;
