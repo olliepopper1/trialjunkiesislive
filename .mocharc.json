@@ -1,12 +1,10 @@
 {
-  "extension": ["cjs"],
-  "spec": "tests/**/*.test.cjs",
-  "require": [
-    "ts-node/register",
-    "./tests/config/setup.cjs"
-  ],
+  "extension": ["ts", "tsx"],
+  "spec": "tests/**/*.{ts,tsx}",
+  "require": ["ts-node/register"],
   "ui": "bdd",
   "timeout": 10000,
   "exit": true,
-  "watch-files": ["tests/**/*.test.cjs", "src/**/*.cjs"]
+  "watch-files": ["tests/**/*.{ts,tsx}"],
+  "recursive": true
 }
