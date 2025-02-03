@@ -1,35 +1,22 @@
 'use strict';
 
 const chai = require('chai');
-require('dotenv').config({ path: '.env.test' });
-
-// Explicitly import Mocha functions
 const mocha = require('mocha');
-const { after, afterEach, before, beforeEach } = mocha;
 
-// Global configuration
+// Make Mocha functions available globally
+Object.assign(global, mocha);
+
+// Setup chai
 global.expect = chai.expect;
 
 // Environment setup
 process.env.NODE_ENV = 'test';
 process.env.JWT_SECRET = 'test-secret';
 
-// Test helpers
-global.createTestUser = () => ({
-  username: 'testuser',
-  password: 'testpass123'
-});
-
-// Server cleanup using global afterEach
-global.afterEach = afterEach;
-global.afterEach(() => {
+// Server cleanup
+afterEach(async () => {
   const app = require('../../src/app.cjs');
   if (app && app.server) {
-    app.server.close();
+    await new Promise((resolve) => app.server.close(resolve));
   }
 });
-
-// Make Mocha functions available globally
-global.before = before;
-global.after = after;
-global.beforeEach = beforeEach;

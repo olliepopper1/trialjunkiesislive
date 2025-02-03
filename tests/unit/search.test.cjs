@@ -1,16 +1,16 @@
 'use strict';
 
 const { expect } = require('chai');
-const search = require('../../src/search/search.cjs');
+const { searchFunction } = require('../../src/search/search.cjs');
 
 describe('Search Functionality Tests', () => {
   it('should return results for valid search terms', async () => {
-    const results = await search.searchFunction('test term');
+    const results = await searchFunction('test term');
     expect(results).to.be.an('array');
   });
 
   it('should handle empty search terms', async () => {
-    const results = await search.searchFunction('');
+    const results = await searchFunction('');
     expect(results).to.be.an('array');
     expect(results).to.have.lengthOf(0);
   });
