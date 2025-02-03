@@ -1,4 +1,4 @@
-name: CI/CD Pipeline
+name: CI/CD
 
 on:
   push:
@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Check out repository
         uses: actions/checkout@v2
 
       - name: Set up Node.js
@@ -30,25 +30,19 @@ jobs:
       - name: Run Prettier
         run: npm run prettier:check
 
-      - name: Run tests
+      - name: Run Jest tests
         run: npm test
 
-      # Uncomment the following steps if you want to build a Docker container and deploy
-      # - name: Build Docker image
-      #   run: docker build -t your-image-name .
-
+      # Uncomment the following steps if you want to build a Docker image and deploy the application
       # - name: Log in to Docker Hub
       #   run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+      # - name: Build Docker image
+      #   run: docker build -t your-image-name .
 
       # - name: Push Docker image
       #   run: docker push your-image-name
 
-      # - name: Deploy to Heroku
-      #   env:
-      #     HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      # - name: Deploy application
       #   run: |
-      #     echo "Deploying to Heroku..."
-      #     docker login --username=_ --password=$HEROKU_API_KEY registry.heroku.com
-      #     docker tag your-image-name registry.heroku.com/your-app-name/web
-      #     docker push registry.heroku.com/your-app-name/web
-      #     heroku container:release web --app your-app-name
+      #     ssh user@your-server 'docker pull your-image-name && docker run -d your-image-name'

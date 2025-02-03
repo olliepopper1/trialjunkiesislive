@@ -41,7 +41,8 @@ async function createPayment({ amount, currency, subscriptionType, userId }) {
     logger.info('Payment created successfully', {
       userId,
       amount,
-      currency
+      currency,
+      paymentId: response.data.id // Log payment ID
     });
 
     return response.data;
@@ -56,6 +57,47 @@ async function createPayment({ amount, currency, subscriptionType, userId }) {
   }
 }
 
+async function refundPayment({ paymentId, amount, userId }) {
+  try {
+    // Validate required fields
+    if (!paymentId || !amount || !userId) {
+      throw new Error('Missing required refund parameters');
+    }
+
+    // Make API request
+    const response = await axios.post(
+      `${MONTERO_API_URL}/${paymentId}/refund`,
+      {
+        amount
+      },
+      {
+        headers: {
+          'Authorization': `Bearer ${MONTERO_API_KEY}`,
+          'Content-Type': 'application/json'
+        }
+      }
+    );
+
+    logger.info('Payment refunded successfully', {
+      userId,
+      paymentId,
+      amount
+    });
+
+    return response.data;
+
+  } catch (error) {
+    logger.error('Payment refund failed', {
+      error: error.message,
+      userId,
+      paymentId,
+      amount
+    });
+    throw error;
+  }
+}
+
 module.exports = {
-  createPayment
+  createPayment,
+  refundPayment
 };
