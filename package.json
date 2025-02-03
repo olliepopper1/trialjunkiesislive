@@ -12,9 +12,7 @@
     "prebuild": "npm run clean",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage",
-    "test:unit": "jest --testMatch='**/*.test.ts'",
-    "test:integration": "jest --testMatch='**/*.int.test.ts'"
+    "test:coverage": "jest --coverage"
   },
   "author": "Zachery",
   "license": "ISC",
@@ -46,6 +44,7 @@
     "@types/node": "^20.10.6",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
-    "@types/winston": "^2.4.4"
+    "@types/winston": "^2.4.4",
+    "nock": "^13.5.1"
   }
 }

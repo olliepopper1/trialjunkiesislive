@@ -1,8 +1,19 @@
+import { Router } from 'express';
 
-import express from 'express';
+const router = Router();
 
-const router = express.Router();
+router.get('/health', (_req, res) => {
+  res.json({
+    status: 'ok',
+    timestamp: new Date().toISOString()
+  });
+});
 
-// Define your API routes here
+router.get('/data', (_req, res) => {
+  res.json({
+    message: 'Test data',
+    items: []
+  });
+});
 
 export default router;

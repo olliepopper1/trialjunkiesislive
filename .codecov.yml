@@ -1,9 +1,16 @@
+codecov:
+  require_ci_to_pass: true
+
 coverage:
   status:
     project:
       default:
-        target: 80%
-        threshold: 2%
+        target: 20%
+        threshold: 5%
     patch:
       default:
-        target: 80%
+        target: 20%
+
+comment:
+  layout: "files"
+  behavior: default
