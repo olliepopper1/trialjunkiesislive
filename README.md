@@ -124,10 +124,11 @@ For more information on creating a VSCode Notebook Renderer with React, you can 
 ### Montero Payments API
 
 - **Endpoint**: `https://api.montero.com/v1/payments`
-- **Required headers**: 
+- **Required headers**:
   - `Authorization`: Bearer token
   - `Content-Type`: application/json
-- **Request body**: 
+- **Request body**:
+
   ```json
   {
     "amount": "number",
@@ -136,6 +137,7 @@ For more information on creating a VSCode Notebook Renderer with React, you can 
     "user_id": "string"
   }
   ```
+
 - **Documentation**: [Montero Payments API](https://montero.com/docs)
 
 ### Striga API for Virtual Card Creation
@@ -157,6 +159,7 @@ For more information on creating a VSCode Notebook Renderer with React, you can 
 ## Environment Variables for API Keys and Tokens
 
 Ensure you set up the following environment variables in your `.env` file:
+
 - `MONTERO_API_KEY`: Your Montero Payments API key
 - `STRIGA_API_KEY`: Your Striga API key
 - `TWILIO_ACCOUNT_SID`: Your Twilio Account SID
