@@ -1,6 +1,6 @@
 'use strict';
 
-const searchFunction = async (term) => {
+const searchFunction = async (term, options = {}) => {
   if (!term) return [];
   
   // Mock implementation for testing

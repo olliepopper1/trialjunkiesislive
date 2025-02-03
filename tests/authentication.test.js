@@ -27,9 +27,7 @@ describe('Authentication Endpoints', () => {
 
   describe('POST /login', () => {
     it('should login an existing user', async () => {
-      const res = await request(app)
-        .post('/login')
-        .send({
+      const res = await request(app).post('/login').send({
           username: 'testuser',
           password: 'testpassword'
         });
